@@ -295,6 +295,14 @@ During the host builder phase, the application configuration is loaded.
 for configuration entries added by prior sources.** 
 
 ```c#
+var configBuilder = new ConfigurationBuilder();
+configBuilder.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+IConfiguration config = configBuilder.Build();
+```
+
+```c#
 builder.ConfigureAppConfiguration((hostingContext, config) =>
 {
 	var env = hostingContext.HostingEnvironment;
